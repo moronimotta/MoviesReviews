@@ -1,14 +1,17 @@
-export default class RAdapterPostJSON {
+export default class ReviewAdapterPostJSON {
 
 
-    GetDadosDosReviews() {
+    GetDadosDosReviews(idReview) {
         let promessa = new Promise(function (resolve, reject) {
 
             let output = null
-
+            let input = {
+                "imdbID": idReview
+            }
             $.ajax({
-                "url": "/listaReviews.php",
-                "method": "GET",
+                "url": "/../ReviewPhp/listaReviews.php",
+                "method": "POST",
+                "data": input
             }).done(function (response) {
 
                 output = JSON.parse(response)

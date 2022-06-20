@@ -1,11 +1,11 @@
 
-export default class ReviewAdapterJSON {
+export default class MenuReviewsAdapterJSON {
 
     Search(procura){
         let promessa = new Promise(function(resolve, reject){
              // Requisição Get
         let settings = {
-            "url":"/movies.json" ,
+            "url":"/../movies.json" ,
             "method": "GET",
           };
           let output = {

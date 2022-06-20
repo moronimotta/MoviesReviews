@@ -1,24 +1,21 @@
 import Review from "./Review.js"
-import RAdapterPostJSON from "./RAdapterPostJSON.js"
-import RAdapterGetJSON from "./RAdapterGetJSON.js"
+import ReviewAdapterGetJSON from "./ReviewAdapterGetJSON.js"
 
-export default class RUseCases {
+export default class ReviewUseCases {
 
   RatingStar = null
   Review = null
-  RAdapterPostJSON = null
-  RAdapterGetJSON = null
+  ReviewAdapterGetJSON = null
 
   constructor() {
     this.Review = new Review()
-    this.RAdapterPostJSON = new RAdapterPostJSON()
-    this.RAdapterGetJSON = new RAdapterGetJSON()
+    this.ReviewAdapterGetJSON = new ReviewAdapterGetJSON()
   }
 
   contadorReviews = 0
 
 
-  Create(idBotao) {
+  CriaReview(idBotao) {
     // Variaveis dos campos do form
     let nome = document.querySelector("#name");
     let email = document.querySelector("#email");
@@ -42,16 +39,16 @@ export default class RUseCases {
       "dados": r
     }
     $.ajax({
-      "url":"/criaReview.php" ,
+      "url":"/../ReviewPhp/criaReview.php" ,
             "method": "POST",
             "data": input
     })
   }
 
-ListaReview(id) {
+ListaReview(btnVerMaisId) {
 
-  let idReview = id
-  this.VerificaUserQuerSpoiler(idReview)
+  let btnId = btnVerMaisId
+  this.VerificaUserQuerSpoiler(btnId)
   this.ContaNumeroReviews(this.contadorReviews)
 
 }
@@ -59,42 +56,44 @@ ListaReview(id) {
 
 
 
-  VerificaUserQuerSpoiler(idReview) {
+  VerificaUserQuerSpoiler(btnId) {
     let instance = this
 
-    this.RAdapterGetJSON.GetDadosDosReviews()
+    this.ReviewAdapterGetJSON.GetDadosDosReviews(btnId)
     .then(function(response){
       if ($("#spoiler-alert").is(":checked")){
-        instance.Listagem(idReview, response, 1)
+        instance.CriaCardReview(btnId, response, 1)
       }else{
-        instance.Listagem(idReview, response, 0)
+        instance.CriaCardReview(btnId, response, 0)
       }
       
     })
   }
 
-  Listagem(id, tipoReview, spoilerFree) {
-    let spoiler = spoilerFree
+  CriaCardReview(btnId, response, spoilerFreeBox) {
+    let spoiler = spoilerFreeBox
 
     let instance = this
-    // console.log(tipoReview)
-    for (let item in tipoReview) {
-      if (tipoReview[item].imdbID == id && spoiler == 1){
-        $("#user-review").append(this.CriaCardReview(tipoReview[item].nome, tipoReview[item].email, tipoReview[item].review, tipoReview[item].rating, id))
-        instance.RatingStar.pintaEstrelinhas(tipoReview[item].rating,tipoReview[item].rating)
+    for (let item in response) {
+      if (response[item].imdbID == btnId && spoiler == 1){
+        $("#user-review").append(this.TemplateCardReview(response[item].nome, response[item].email, response[item].review, response[item].rating))
+        instance.RatingStar.pintaEstrelinhas(response[item].rating,response[item].rating)
         instance.contadorReviews++
       }
-      else if(tipoReview[item].imdbID == id && spoiler == 0) {
-        if(tipoReview[item].spoiler == false) {
-          $("#user-review").append(this.CriaCardReview(tipoReview[item].nome, tipoReview[item].email, tipoReview[item].review, tipoReview[item].rating, id))
-          instance.RatingStar.pintaEstrelinhas(tipoReview[item].rating,tipoReview[item].rating)
+      else if(response[item].imdbID == btnId && spoiler == 0) {
+        if(response[item].spoiler == false) {
+          $("#user-review").append(this.TemplateCardReview(response[item].nome, response[item].email, response[item].review, response[item].rating))
+          instance.RatingStar.pintaEstrelinhas(response[item].rating,response[item].rating)
           instance.contadorReviews++
         }
       }
     }
   }
 
+DeletaReview(){
 
+
+}
 
 
 
@@ -130,7 +129,7 @@ ListaReview(id) {
     this.contadorReviews = 0
   }
 
-  CriaCardReview(nome = '', email = '', review = '', rating="") {
+  TemplateCardReview(nome = '', email = '', review = '', rating="") {
     let card = `
         <div class="card">
         <div class="card-header">
@@ -147,6 +146,7 @@ ListaReview(id) {
         </div>
         <div class="card-body">
           <p class="card-text">${review}</p>
+          <h6><button type="button" id="deletar-reviews" class="btn btn-danger" style="float: right">Deletar Review</button></h6>
         </div>
       </div>
       `

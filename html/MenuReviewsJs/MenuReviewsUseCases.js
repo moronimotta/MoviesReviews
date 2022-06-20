@@ -1,12 +1,12 @@
-import ReviewAdapterJSON from "./ReviewAdapterJSON.js"
-export default class ReviewUseCases {
+import MenuReviewsAdapterJSON from "./MenuReviewsAdapterJSON.js"
+export default class MenuReviewsUseCases {
 
   Adapter = null
   rController = null
   constructor(tipo = "json") {
 
     if (tipo == "json") {
-      this.Adapter = new ReviewAdapterJSON()
+      this.Adapter = new MenuReviewsAdapterJSON()
     }
   }
 

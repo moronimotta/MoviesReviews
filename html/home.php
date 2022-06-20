@@ -169,8 +169,8 @@
 <div id='lista'>
 
 </div>
-<script type="module" src="RatingStar.js"></script>
-<script type="module" src="Review.js"></script>
+<script type="module" src="EstrelasJs/RatingStar.js"></script>
+<script type="module" src="ReviewsJs/Review.js"></script>
 <script type="module" src="app.js"></script>
 
 <!-- <script src="ReviewUseCases.js"></script> -->

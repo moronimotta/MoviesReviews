@@ -1,9 +1,9 @@
-import ReviewUseCases from "./ReviewUseCases.js"
+import MenuReviewsUseCases from "./MenuReviewsUseCases.js"
 
-export default class ReviewController {
+export default class MenuReviewsController {
 
     constructor(tipo = "json", rController = null){
-        this.useCases = new ReviewUseCases(tipo)
+        this.useCases = new MenuReviewsUseCases(tipo)
         this.useCases.rController = rController
     }
     useCases = null

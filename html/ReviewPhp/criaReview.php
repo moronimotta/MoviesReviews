@@ -1,6 +1,6 @@
 <?php 
 
-include_once "Review/controller.php";
+include_once "controller.php";
 
 $controller = new ReviewController();
 

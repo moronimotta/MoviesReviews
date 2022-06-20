@@ -1,12 +1,12 @@
-import RController from "./RController.js"
-import ReviewController from "./ReviewController.js"
-import RatingStar from "./RatingStar.js"
+import ReviewController from "./ReviewsJs/ReviewController.js"
+import MenuReviewsController from "./MenuReviewsJs/MenuReviewsController.js"
+import RatingStar from "./EstrelasJs/RatingStar.js"
 
 // var itemRating
 var estrelinha = new RatingStar(false)
-var controllerReviews = new RController(estrelinha)
+var controllerReviews = new ReviewController(estrelinha)
 
-var controller = new ReviewController("json", controllerReviews)
+var controller = new MenuReviewsController("json", controllerReviews)
 $("#btn-search").click(function () {
    let str = $("#searchbar").val()
    controller.Search(str)
@@ -14,7 +14,7 @@ $("#btn-search").click(function () {
 })
 
 $("#send").click(function () {
-   controllerReviews.Create(controllerReviews.id)
+   controllerReviews.CriaReview(controllerReviews.id)
    controllerReviews.ListaReview(controllerReviews.id)
 })
 
