@@ -22,18 +22,19 @@ export default class ReviewUseCases {
     let review = document.querySelector("#review");
     let imdbID = idBotao;
     let spoiler = 0
+    let id =0
     
-    this.VerificaSeCriaComOuSemSpoiler(nome, email, review, imdbID, spoiler, this.RatingStar.getRatingValue())
+    this.VerificaSeCriaComOuSemSpoiler(nome, email, review, imdbID, spoiler, this.RatingStar.getRatingValue(), id)
     this.LimpaForm();
     this.LimpaExibe();
   }
 
 
-  VerificaSeCriaComOuSemSpoiler(nome, email, review, imdbID, spoiler, rating) {
+  VerificaSeCriaComOuSemSpoiler(nome, email, review, imdbID, spoiler, rating, id) {
     if ($("#box-spoiler").is(":checked")) {
       spoiler = 1
     }
-      let r = new Review(nome.value, email.value, review.value, imdbID, spoiler, rating)
+      let r = new Review(nome.value, email.value, review.value, imdbID, spoiler, rating, id)
 
     let input = {
       "dados": r

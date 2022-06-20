@@ -5,6 +5,7 @@ include_once "adapterJSON.php";
 interface ReviewRepository{
     public function list();
     public function create(Review $input);
+    public function getId();
 }
 
 class ReviewUseCases{
@@ -20,9 +21,10 @@ class ReviewUseCases{
     public function list(){
         $arr = $this->adapter->list();
         $output = array();
+        
 
         foreach($arr as $item){
-            $i = new Review($item->nome,$item->email,$item->review,$item->imdbID,$item->rating,$item->spoiler);
+            $i = new Review($item->nome,$item->email,$item->review,$item->imdbID,$item->rating,$item->id,$item->spoiler);
             $output[] = $i;
 
         }
@@ -33,7 +35,8 @@ class ReviewUseCases{
         if($item->nome == null){
             return false;
         }
-        $i = new Review($item->nome,$item->email,$item->review,$item->imdbID,$item->rating,$item->spoiler);
+        $id = $this->adapter->getId();
+        $i = new Review($item->nome,$item->email,$item->review,$item->imdbID,$item->rating,$item->id=$id,$item->spoiler);
         $this->adapter->create($i);
         return true;
     }

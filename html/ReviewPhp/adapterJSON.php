@@ -18,7 +18,11 @@ class JSONAdapter implements ReviewRepository{
         // 
     }
 
-  
+    public function getId(){
+        $output = json_decode($this->getData());
+        $id = sizeof($output) +1;
+        return $id;
+    }
 
     private function getData(){
         $dados = file_get_contents(__DIR__."/../reviewsSalvos.json");

@@ -8,6 +8,7 @@ class Review
         public string $review,
         public string $imdbID,
         public int $rating,
-        public bool $spoiler = false
+        public string $id,
+        public bool $spoiler = false,
     ) {}
 }
