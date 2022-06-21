@@ -28,4 +28,9 @@ $("#btn-ver-reviews").click(function () {
 
 })
 
+//$("#deleta-review").click(function () {
+   //controllerReviews.DeletaReview()
+  // console.log("clicado")
+//})
+
 

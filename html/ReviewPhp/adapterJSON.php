@@ -15,13 +15,21 @@ class JSONAdapter implements ReviewRepository{
         $dados = $this->list();
         $dados[] = $input;
         file_put_contents(__DIR__."/../reviewsSalvos.json", json_encode($dados));
-        // 
+        
     }
 
     public function getId(){
         $output = json_decode($this->getData());
-        $id = sizeof($output) +1;
-        return $id;
+        $idMaior = 0;
+        foreach($output as $o){
+            $idInt = intval($o->id);
+            if($idInt > $idMaior){
+                $idMaior = $idInt;
+            }
+        }
+
+        $idInserido = $idMaior + 1;
+        return $idInserido;
     }
 
     private function getData(){

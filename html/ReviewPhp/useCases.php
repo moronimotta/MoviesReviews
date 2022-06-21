@@ -51,4 +51,19 @@ class ReviewUseCases{
         }
         return $output;
     }
+
+    public function delete($id){
+        $dados = $this->list();
+        $input = [];
+        foreach($dados as $item){
+            if($item->id === $id) {
+                // unset($dados[$key]);
+                continue;
+            }
+
+            $input[] = $item;
+        }
+        var_dump($dados);
+        file_put_contents(__DIR__."/../reviewsSalvos.json", json_encode($input));
+    }
 }

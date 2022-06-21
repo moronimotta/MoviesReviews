@@ -20,4 +20,8 @@ class ReviewController
     public function listByImdbID(string $imdbID){
         return $this->interactor->listByImdbID($imdbID);
     }
+
+    public function delete($id) {
+        return $this->interactor->delete($id);
+    }
 }

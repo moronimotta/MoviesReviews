@@ -14,6 +14,21 @@ export default class ReviewUseCases {
 
   contadorReviews = 0
 
+  idReviewDeletar = 0
+
+  DeletaReview(idReview){
+    let id = idReview
+    let input = {
+      "id": id
+    }
+  
+    $.ajax({
+      "url":"/../ReviewPhp/deletaReviews.php",
+      "method": "POST",
+      "data": input
+    })
+  
+  }
 
   CriaReview(idBotao) {
     // Variaveis dos campos do form
@@ -77,24 +92,28 @@ ListaReview(btnVerMaisId) {
     let instance = this
     for (let item in response) {
       if (response[item].imdbID == btnId && spoiler == 1){
-        $("#user-review").append(this.TemplateCardReview(response[item].nome, response[item].email, response[item].review, response[item].rating))
+        $("#user-review").append(this.TemplateCardReview(response[item].nome, response[item].email, response[item].review, response[item].rating, response[item].id))
         instance.RatingStar.pintaEstrelinhas(response[item].rating,response[item].rating)
         instance.contadorReviews++
       }
       else if(response[item].imdbID == btnId && spoiler == 0) {
         if(response[item].spoiler == false) {
-          $("#user-review").append(this.TemplateCardReview(response[item].nome, response[item].email, response[item].review, response[item].rating))
+          $("#user-review").append(this.TemplateCardReview(response[item].nome, response[item].email, response[item].review, response[item].rating, response[item].id))
           instance.RatingStar.pintaEstrelinhas(response[item].rating,response[item].rating)
           instance.contadorReviews++
         }
       }
+
     }
+    $(".btn-deletar-review").each(function (index) {
+      $(this).on("click", function () {
+        let idReview = $(this).data("idreview")
+        instance.DeletaReview(idReview)
+      });
+    });
   }
 
-DeletaReview(){
 
-
-}
 
 
 
@@ -130,7 +149,7 @@ DeletaReview(){
     this.contadorReviews = 0
   }
 
-  TemplateCardReview(nome = '', email = '', review = '', rating="") {
+  TemplateCardReview(nome = '', email = '', review = '', rating="", id = '') {
     let card = `
         <div class="card">
         <div class="card-header">
@@ -147,7 +166,7 @@ DeletaReview(){
         </div>
         <div class="card-body">
           <p class="card-text">${review}</p>
-          <h6><button type="button" id="deletar-reviews" class="btn btn-danger" style="float: right">Deletar Review</button></h6>
+          <h6><button type="button" id="deleta-review" data-idreview="${id}" class="btn btn-danger btn-deletar-review" style="float: right">Deletar Review</button></h6>
         </div>
       </div>
       `

@@ -20,6 +20,9 @@ export default class ReviewController {
     LimpaReview(){
         this.ReviewUseCases.LimpaReview()
     }
+    DeletaReview(){
+        this.ReviewUseCases.DeletaReview()
+    }
 
 
 
