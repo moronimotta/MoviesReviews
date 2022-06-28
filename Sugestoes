@@ -1,0 +1,21 @@
+1 - Trabalhar estrutura dos arquivos:
+    Cria uma pasta para os arquivos de repositório (e coloca lá dentro o movies.json e o reviewsSalvos.json)
+    Cria uma pasta para os .js do review
+    Cria uma pasta para os .php do review (criaReveiew.php e listaReviews.php)
+
+2 - Os nomes dos arquivos/variáveis/funções estão claros e sendo verdadeiros no que representa/é/faz? 
+    (por exemplo, existem ReviewUseCases e RUseCases. qual é a diferença? como isso poderia ser melhorado?)
+    Troca o nome do que precisa ser trocado
+
+3 - Você consegue entender o que está acontecendo em cada processo do app?
+    Ao criar um review
+    Ao listar reviews
+    Ao deletar um review
+
+4 - Cria um outro adapter para buscar os filmes por API e coloca no lugar do que está buscando no movies.json
+    É importante manter a mesma estrutura dos dados e só trocar o arquivo de adapter um pelo outro
+    Ambos precisam funcionar, só precisando trocar o nome do arquivo especificado
+
+
+
+

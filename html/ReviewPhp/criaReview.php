@@ -2,7 +2,8 @@
 
 include_once "controller.php";
 
-$controller = new ReviewController();
+//especificar o tipo de adapter que o usecases vai usar
+$controller = new ReviewController("DB");
 
 $output = new stdClass();
 

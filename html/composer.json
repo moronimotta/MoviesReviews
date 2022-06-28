@@ -13,13 +13,16 @@
     "web",
     "admin"
   ],
-  "authors": [
-    {
-      "name": "Colorlib"
-    }
-  ],
+  "authors": [{
+    "name": "Colorlib"
+  }],
   "license": "MIT",
   "support": {
     "issues": "https://github.com/ColorlibHQ/AdminLTE/issues"
+  },
+  "require": {
+    "doctrine/orm": "^2.12",
+    "symfony/cache": "^5.3",
+    "doctrine/annotations": "^1.13"
   }
 }

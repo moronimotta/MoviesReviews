@@ -55,7 +55,7 @@ export default class ReviewUseCases {
       "dados": r
     }
     $.ajax({
-      "url":"/../ReviewPhp/criaReview.php" ,
+      "url":"/../ReviewPhp/criaReviewBanco.php" ,
             "method": "POST",
             "data": input
     })

@@ -7,22 +7,21 @@ var estrelinha = new RatingStar(false)
 var controllerReviews = new ReviewController(estrelinha)
 
 var controller = new MenuReviewsController("json", controllerReviews)
-$("#btn-search").click(function () {
+$("#btn-search").on("click", function () {
    let str = $("#searchbar").val()
    controller.Search(str)
-
 })
 
-$("#send").click(function () {
+$("#send").on("click", function () {
    controllerReviews.CriaReview(controllerReviews.id)
    controllerReviews.ListaReview(controllerReviews.id)
 })
 
-$("#fecha-modal").click(function () {
+$("#fecha-modal").on("click", function () {
    controllerReviews.LimpaReview()
 })
 
-$("#btn-ver-reviews").click(function () {
+$("#btn-ver-reviews").on("click", function () {
    controllerReviews.LimpaReview()
    controllerReviews.ListaReview(controllerReviews.id)
 

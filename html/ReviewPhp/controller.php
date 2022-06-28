@@ -4,9 +4,9 @@ include_once "useCases.php";
 class ReviewController
 {
     private $interactor;
-    public function __construct()
+    public function __construct(string $adapter) //JSON ou DB
     {
-        $this->interactor = new ReviewUseCases("JSON");
+        $this->interactor = new ReviewUseCases($adapter);
     }
 
     public function list(){

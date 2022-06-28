@@ -1,8 +1,11 @@
 <?php 
 
 include_once "controller.php";
+include_once "entity.php";
+include_once __DIR__ . "/../db/entityManager.php";
 
-$controller = new ReviewController();
+//especificar o tipo de adapter que o usecases vai usar
+$controller = new ReviewController("DB");
 
 $imdbID = $_POST["imdbID"];
 $dados = $controller->listByImdbID($imdbID);

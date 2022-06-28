@@ -6,6 +6,8 @@ interface ReviewRepository{
     public function list();
     public function create(Review $input);
     public function getId();
+    public function listByImdbID(string $imdbID);   
+    public function delete($id);
 }
 
 class ReviewUseCases{
@@ -13,7 +15,13 @@ class ReviewUseCases{
     public function __construct(string $repository)
     {
         if ($repository == "JSON") {
+            include_once "adapterJSON.php";
             $this->adapter = new JSONAdapter();
+        }
+
+        if ($repository == "DB") {
+            include_once "adapterDB.php";
+            $this->adapter = new DBAdapter();
         }
 
     }
@@ -35,35 +43,24 @@ class ReviewUseCases{
         if($item->nome == null){
             return false;
         }
+        
         $id = $this->adapter->getId();
-        $i = new Review($item->nome,$item->email,$item->review,$item->imdbID,$item->rating,$item->id=$id,$item->spoiler);
-        $this->adapter->create($i);
+        $item->id = $id;
+        
+        //assign $item to new Review object
+        $review = new Review($item->nome,$item->email,$item->review,$item->imdbID,$item->rating,$item->id,$item->spoiler);
+
+        $this->adapter->create($review);
         return true;
     }
 
     public function listByImdbID(string $imdbID){
-        $dados = $this->list();
-        $output = array();
-        foreach($dados as $item){
-            if($item->imdbID == $imdbID){
-                $output[] = $item;
-            }
-        }
-        return $output;
+        $this->adapter->listByImdbID($imdbID);
     }
 
     public function delete($id){
-        $dados = $this->list();
-        $input = [];
-        foreach($dados as $item){
-            if($item->id === $id) {
-                // unset($dados[$key]);
-                continue;
-            }
-
-            $input[] = $item;
-        }
-        var_dump($dados);
-        file_put_contents(__DIR__."/../reviewsSalvos.json", json_encode($input));
+        $this->adapter->delete($id);
     }
+
+    
 }
