@@ -65,10 +65,10 @@ ListaReview(btnVerMaisId) {
 
   let btnId = btnVerMaisId
   this.VerificaUserQuerSpoiler(btnId)
+  this.MediaReviews(btnId)
   this.ContaNumeroReviews(this.contadorReviews)
 
 }
-
 
 
 
@@ -82,9 +82,26 @@ ListaReview(btnVerMaisId) {
       }else{
         instance.CriaCardReview(btnId, response, 0)
       }
-      
     })
   }
+
+  //get data from mediaReviews.php
+  MediaReviews(btnId) {
+    let input = {
+      "imdbID": btnId
+  }
+    $.ajax({
+      "url":"/../ReviewPhp/mediaReviews.php" ,
+    "method": "POST",
+    "data": input
+  }).done(function(response){
+    let average = parseInt(Math.round(response))
+    if(average>=3) {
+      $("#average-icon").prop("src", "https://www.rottentomatoes.com/assets/pizza-pie/images/icons/audience/aud_score-fresh.6c24d79faaf.svg")
+    }else {}
+  })
+
+}
 
   CriaCardReview(btnId, response, spoilerFreeBox) {
     let spoiler = spoilerFreeBox

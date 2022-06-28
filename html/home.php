@@ -83,9 +83,12 @@
         <h4 class="modal-title">Lista de Reviews</h4>
       </div>
       <div class="modal-body" style="overflow-y: auto; height:80vh;">
-        <img src="https://rotacult.com.br/wp-content/uploads/2022/03/Top-Gun-Maverick.png" class="poster" id="item-poster-modal" height="98" width="67">
+        <img id="rating-icon" src="https://rotacult.com.br/wp-content/uploads/2022/03/Top-Gun-Maverick.png" class="poster" id="item-poster-modal" height="98" width="67">
         <h4 id="item-name-modal">Avengers Endgame</h4>
-        <h4 id="item-year-modal">(2019) </h4>
+        <h4 id="item-year-modal">(2019) 
+        <span style="float: right;"><img id="average-icon"style="height: 48px; width: 48px"src="https://www.rottentomatoes.com/assets/pizza-pie/images/icons/audience/aud_score-rotten.f419e4046b7.svg"></span>
+        </h4>
+        
 
         <h6><i id="numero-reviews"></i><i> Reviews</i></h6>
         <div class="form-check check-lista-reviews">

@@ -8,6 +8,7 @@ interface ReviewRepository{
     public function getId();
     public function listByImdbID(string $imdbID);   
     public function delete($id);
+    public function getRatingAverage(string $imdbID);
 }
 
 class ReviewUseCases{
@@ -55,12 +56,15 @@ class ReviewUseCases{
     }
 
     public function listByImdbID(string $imdbID){
-        $this->adapter->listByImdbID($imdbID);
+       return $this->adapter->listByImdbID($imdbID);
     }
 
     public function delete($id){
         $this->adapter->delete($id);
     }
 
+    public function getRatingAverage(string $imdbID){
+        return $this->adapter->getRatingAverage($imdbID);
+    }
     
 }

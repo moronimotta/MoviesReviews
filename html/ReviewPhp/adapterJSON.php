@@ -67,4 +67,16 @@ class JSONAdapter implements ReviewRepository
         var_dump($dados);
         file_put_contents(__DIR__ . "/../reviewsSalvos.json", json_encode($input));
     }
+
+    public function getRatingAverage(string $imdbID)
+    {
+        $dados = $this->listByImdbID($imdbID);
+        $total = 0;
+        $count = 0;
+        foreach ($dados as $item) {
+            $total += $item->rating;
+            $count++;
+        }
+        return $total / $count;
+    }
 }

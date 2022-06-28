@@ -33,7 +33,34 @@ class DBAdapter implements ReviewRepository{
         return $id[0][1];
     }
 
-    //find reviews by imdbID using doctrine and get the data from database
+
+    //find reviews by imdbID and get average rating #CHECKED#
+    public function getRatingAverage(string $imdbID){
+        $query = $this->entityManager->createQuery('SELECT AVG(reviews.rating) FROM Review reviews WHERE reviews.imdbID = :imdbID');
+        $query->setParameter('imdbID', $imdbID);
+        $rating = $query->getResult();
+        return $rating[0][1];
+    }
+
+    //public function getRatingAverage(){
+    //    $query = $this->entityManager->createQuery('SELECT AVG(reviews.rating) FROM Review reviews');
+    //    $rating = $query->getResult();
+    //    return $rating[0][1];
+    //}
+
+  //find reviews by imdbID using doctrine and get the data from database
+  public function listByImdbID(string $imdbID){
+    $qb = $this->entityManager->createQueryBuilder();
+    $query = $qb->select('reviews')
+        ->from('Review', 'reviews')
+        ->where('reviews.imdbID = :imdbID')
+        ->setParameter('imdbID', $imdbID)
+        ->getQuery();
+
+    $reviews = $query->getResult();
+    return $reviews;
+}
+
 
 
     //deletes a review from database using doctrine #CHECKED#

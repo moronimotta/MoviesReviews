@@ -20,3 +20,10 @@ function getEntityManager(){
     $entityManager = EntityManager::create($params, $config);
     return $entityManager;
 }
+
+//retrieves a query builder from php doctrine
+function getQueryBuilder(){
+    $entityManager = getEntityManager();
+    $queryBuilder = $entityManager->createQueryBuilder();
+    return $queryBuilder;
+}

@@ -24,4 +24,8 @@ class ReviewController
     public function delete($id) {
         return $this->interactor->delete($id);
     }
+
+    public function getRatingAverage(string $imdbID){
+        return $this->interactor->getRatingAverage($imdbID);
+    }
 }
