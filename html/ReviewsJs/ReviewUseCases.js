@@ -64,6 +64,10 @@ export default class ReviewUseCases {
 ListaReview(btnVerMaisId) {
 
   let btnId = btnVerMaisId
+
+  //loading average
+  $("#average-icon").prop("src", "https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif")
+  
   this.VerificaUserQuerSpoiler(btnId)
   this.MediaReviews(btnId)
   this.ContaNumeroReviews(this.contadorReviews)
@@ -98,7 +102,9 @@ ListaReview(btnVerMaisId) {
     let average = parseInt(Math.round(response))
     if(average>=3) {
       $("#average-icon").prop("src", "https://www.rottentomatoes.com/assets/pizza-pie/images/icons/audience/aud_score-fresh.6c24d79faaf.svg")
-    }else {}
+    }else {
+      $("#average-icon").prop("src", "https://www.rottentomatoes.com/assets/pizza-pie/images/icons/audience/aud_score-rotten.f419e4046b7.svg")
+    }
   })
 
 }
