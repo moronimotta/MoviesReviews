@@ -9,7 +9,7 @@ $paths = [__DIR__."/../ReviewPhp/"];
 $isDevMode = true;
 //aqui configuramos a conexão com banco de dados
 $params = [
-    'url' => "mysql://root:patofu20@db_local/movies_reviews"
+    'url' => "mysql://root:@db_local/movies_reviews"
 ];
 $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode, null, null, false);
 
