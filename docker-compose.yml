@@ -32,7 +32,7 @@ services:
     command: [--innodb-flush-method=fsync]
     environment:
       MYSQL_DATABASE: "movies_reviews"
-      MYSQL_ROOT_PASSWORD: "patofu20"
+      MYSQL_ROOT_PASSWORD: ""
       MYSQL_PASSWORD: "dsi"
       MYSQL_USER: "dsiarena"
     security_opt:
